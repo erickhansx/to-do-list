@@ -1,0 +1,47 @@
+.input-text {
+  border: 0;
+  margin-bottom: 10px;
+  outline: none;
+  font-style: italic;
+}
+
+.input-text::after {
+  border: 0;
+}
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  border: 1px solid rgb(214, 212, 212);
+  margin: 0 auto;
+  position: relative;
+  top: 25%;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.input-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  outline: 1px solid rgb(214, 212, 212);
+}
+
+.resetBtn {
+  height: 50px;
+  color: rgb(158, 158, 158);
+  background-color: rgb(230, 227, 227);
+  border: 0;
+}
