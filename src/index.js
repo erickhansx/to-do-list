@@ -1,27 +1,7 @@
 import './components/addremove/style.scss';
 import UI from './components/addremove/AddRemoveClass.js';
 
-const tasks = [
-  // {
-  //   description: 'Wash the dishes',
-  //   completed: true,
-  //   index: 0,
-  // },
-  // {
-  //   description: 'Complete todo list project',
-  //   completed: true,
-  //   index: 0,
-  // },
-  // {
-  //   description: 'Clean the house',
-  //   completed: true,
-  //   index: 0,
-  // },
-];
-
-// tasks.forEach((task, index) => {
-//   task.index = index;
-// });
+let tasks = [];
 
 const renderTasks = () => {
   const list = document.querySelector('.list');
@@ -51,11 +31,12 @@ inputText.addEventListener('keydown', (e) => {
   }
 });
 
-//Event listener to Remove and edit tasks
+//Event listener to edit tasks
 let list = document.querySelector('.list');
 list.addEventListener('keypress', (e) => {
   if (e.target.classList.contains('editor') && e.key === 'Enter') {
     e.preventDefault();
+    UI.editTask(e);
   }
 });
 

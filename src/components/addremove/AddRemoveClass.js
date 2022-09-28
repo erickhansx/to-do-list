@@ -32,7 +32,12 @@ export default class UI {
     console.log(elementId);
   }
 
-  static editTask(e) {}
+  static editTask(e) {
+    let elementId = e.target.id;
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+    tasks[elementId].description = e.target.innerText;
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }
 
   static renderTasks() {
     const list = document.querySelector('.list');
@@ -45,7 +50,7 @@ export default class UI {
     <input type="checkbox">
     <span id="${task.index}" class="editor" contentEditable="true">${task.description}</span>
     </div>
-    <a class="remove" id="${task.index}"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+    <a class="remove" id="${task.index}"><i class="hide fa-solid fa-trash-can"></i><i class="fa-solid fa-ellipsis-vertical"></i></a>
   </div>`;
       });
     }
