@@ -1,26 +1,27 @@
-import './components/todolist/style.scss';
+import './components/addremove/style.scss';
+import UI from './components/addremove/AddRemoveClass.js';
 
 const tasks = [
-  {
-    description: 'Wash the dishes',
-    completed: true,
-    index: 0,
-  },
-  {
-    description: 'Complete todo list project',
-    completed: true,
-    index: 0,
-  },
-  {
-    description: 'Clean the house',
-    completed: true,
-    index: 0,
-  },
+  // {
+  //   description: 'Wash the dishes',
+  //   completed: true,
+  //   index: 0,
+  // },
+  // {
+  //   description: 'Complete todo list project',
+  //   completed: true,
+  //   index: 0,
+  // },
+  // {
+  //   description: 'Clean the house',
+  //   completed: true,
+  //   index: 0,
+  // },
 ];
 
-tasks.forEach((task, index) => {
-  task.index = index + 1;
-});
+// tasks.forEach((task, index) => {
+//   task.index = index;
+// });
 
 const renderTasks = () => {
   const list = document.querySelector('.list');
@@ -36,7 +37,27 @@ const renderTasks = () => {
 };
 
 // Event Listener to render tasks when window loads.
-window.addEventListener('DOMContentLoaded', renderTasks);
+window.addEventListener('DOMContentLoaded', UI.renderTasks);
+
+// Event Listeners
+
+//Event listener to add a Task
+let inputText = document.querySelector('.input-text');
+inputText.addEventListener('keydown', (e) => {
+  if (e.key == 'Enter') {
+    console.log(document.querySelector('.input-text').value);
+    UI.addTask();
+    UI.renderTasks();
+  }
+});
+
+//Event listener to Remove and edit tasks
+let list = document.querySelector('.list');
+list.addEventListener('keypress', (e) => {
+  if (e.target.classList.contains('editor') && e.key === 'Enter') {
+    e.preventDefault();
+  }
+});
 
 // Check if Webpack is currently on Development or Production mode.
 if (process.env.NODE_ENV === 'production') {
