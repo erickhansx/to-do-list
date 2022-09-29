@@ -6,17 +6,17 @@ window.addEventListener('DOMContentLoaded', UI.renderTasks);
 
 // Event Listeners
 
-//Event listener to add a Task
-let inputText = document.querySelector('.input-text');
+// Event listener to add a Task
+const inputText = document.querySelector('.input-text');
 inputText.addEventListener('keydown', (e) => {
-  if (e.key == 'Enter') {
+  if (e.key === 'Enter') {
     UI.addTask();
     UI.renderTasks();
   }
 });
 
-//Event listener to edit tasks
-let list = document.querySelector('.list');
+// Event listener to edit tasks
+const list = document.querySelector('.list');
 list.addEventListener('keypress', (e) => {
   if (e.target.classList.contains('editor') && e.key === 'Enter') {
     e.preventDefault();
@@ -24,26 +24,26 @@ list.addEventListener('keypress', (e) => {
   }
 });
 
-//Event listener to show Trashcan
+// Event listener to show Trashcan
 
 list.addEventListener('focusin', (e) => {
   if (e.target.classList.contains('editor')) {
-    let elementId = e.target.id;
-    let trashCan = document.querySelector(`.trash-${elementId}`);
-    let ellipsisVertical = document.querySelector(`.ellipsis-${elementId}`);
+    const elementId = e.target.id;
+    const trashCan = document.querySelector(`.trash-${elementId}`);
+    const ellipsisVertical = document.querySelector(`.ellipsis-${elementId}`);
     trashCan.classList.remove('hide');
     ellipsisVertical.classList.add('hide');
   }
 });
 
-//Event Listener to show Ellipsis
+// Event Listener to show Ellipsis
 
 list.addEventListener('focusout', (e) => {
   if (e.target.classList.contains('editor')) {
     UI.editTask(e);
-    let elementId = e.target.id;
-    let trashCan = document.querySelector(`.trash-${elementId}`);
-    let ellipsisVertical = document.querySelector(`.ellipsis-${elementId}`);
+    const elementId = e.target.id;
+    const trashCan = document.querySelector(`.trash-${elementId}`);
+    const ellipsisVertical = document.querySelector(`.ellipsis-${elementId}`);
 
     setTimeout(() => {
       trashCan.classList.add('hide');
@@ -55,7 +55,6 @@ list.addEventListener('focusout', (e) => {
 // Event listener to remove Tasks
 
 list.addEventListener('click', (e) => {
-  // console.log(e.target);
   UI.removeTask(e);
 });
 
