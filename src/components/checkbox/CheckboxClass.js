@@ -22,7 +22,7 @@ export default class Checkbox {
     const checkboxNums = [];
     checkboxIds.forEach((checkbox) => checkboxNums.push(Number(checkbox)));
     const matchedTasks = tasks.filter(
-      (task) => !checkboxNums.includes(task.index),
+      (task) => !checkboxNums.includes(task.index)
     );
     matchedTasks.forEach((task, index) => {
       task.index = index;
@@ -31,5 +31,22 @@ export default class Checkbox {
     localStorage.setItem('tasks', JSON.stringify(matchedTasks));
     UI.renderTasks();
     checkboxIds = [];
+  }
+
+  static changeListener() {
+    const list = document.querySelector('.list');
+    list.onchange = () => {
+      const checkbox = document.querySelectorAll('.checkbox');
+      const tasks = JSON.parse(localStorage.getItem('tasks'));
+      checkbox.forEach((checkbox) => {
+        const elementId = checkbox.id;
+        if (checkbox.checked) {
+          tasks[elementId].completed = true;
+        } else {
+          tasks[elementId].completed = false;
+        }
+      });
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    };
   }
 }

@@ -68,6 +68,10 @@ reloadWindow.addEventListener('click', () => {
   window.location.reload();
 });
 
+// Event Listener for change on checkbox
+
+Checkbox.changeListener();
+
 // Check if Webpack is currently on Development or Production mode.
 if (process.env.NODE_ENV === 'production') {
   console.log('Production Mode');
