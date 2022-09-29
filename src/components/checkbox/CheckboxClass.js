@@ -22,7 +22,7 @@ export default class Checkbox {
     const checkboxNums = [];
     checkboxIds.forEach((checkbox) => checkboxNums.push(Number(checkbox)));
     const matchedTasks = tasks.filter(
-      (task) => !checkboxNums.includes(task.index)
+      (task) => !checkboxNums.includes(task.index),
     );
     matchedTasks.forEach((task, index) => {
       task.index = index;
