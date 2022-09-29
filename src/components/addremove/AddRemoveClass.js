@@ -28,13 +28,23 @@ export default class UI {
   }
 
   static removeTask(e) {
-    let elementId = e.target.id;
-    console.log(elementId);
+    if (e.target.classList.contains('remove')) {
+      let elementId = e.target.id;
+      console.log(elementId);
+      e.target.parentElement.parentElement.remove();
+      let tasks = JSON.parse(localStorage.getItem('tasks'));
+      console.log(tasks);
+      let newTasks = tasks.filter((task) => {
+        return task.index != e.target.id;
+      });
+      tasks = newTasks;
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
   }
 
   static editTask(e) {
     let elementId = e.target.id;
-    tasks = JSON.parse(localStorage.getItem('tasks'));
+    let tasks = JSON.parse(localStorage.getItem('tasks'));
     tasks[elementId].description = e.target.innerText;
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }
@@ -50,7 +60,7 @@ export default class UI {
     <input type="checkbox">
     <span id="${task.index}" class="editor" contentEditable="true">${task.description}</span>
     </div>
-    <a class="remove" id="${task.index}"><i class="hide fa-solid fa-trash-can"></i><i class="fa-solid fa-ellipsis-vertical"></i></a>
+    <a id="${task.index}"><i class="hide remove trash-${task.index} fa-solid fa-trash-can" id="${task.index}"></i><i class="ellipsis-${task.index} fa-solid fa-ellipsis-vertical"></i></a>
   </div>`;
       });
     }

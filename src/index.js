@@ -1,21 +1,6 @@
 import './components/addremove/style.scss';
 import UI from './components/addremove/AddRemoveClass.js';
 
-let tasks = [];
-
-const renderTasks = () => {
-  const list = document.querySelector('.list');
-  tasks.forEach((task) => {
-    list.innerHTML += `<div class="item">
-    <div class="item__container--checkbox-text">
-    <input type="checkbox">
-    <span>${task.description}</span>
-    </div>
-    <a class="remove" id="${task.index}"><i class="fa-solid fa-ellipsis-vertical"></i></a>
-  </div>`;
-  });
-};
-
 // Event Listener to render tasks when window loads.
 window.addEventListener('DOMContentLoaded', UI.renderTasks);
 
@@ -38,6 +23,41 @@ list.addEventListener('keypress', (e) => {
     e.preventDefault();
     UI.editTask(e);
   }
+});
+
+//Event listener to show Trashcan
+
+list.addEventListener('focusin', (e) => {
+  if (e.target.classList.contains('editor')) {
+    let elementId = e.target.id;
+    let trashCan = document.querySelector(`.trash-${elementId}`);
+    let ellipsisVertical = document.querySelector(`.ellipsis-${elementId}`);
+    trashCan.classList.remove('hide');
+    ellipsisVertical.classList.add('hide');
+  }
+});
+
+//Event Listener to show Ellipsis
+
+list.addEventListener('focusout', (e) => {
+  UI.editTask(e);
+  if (e.target.classList.contains('editor')) {
+    let elementId = e.target.id;
+    let trashCan = document.querySelector(`.trash-${elementId}`);
+    let ellipsisVertical = document.querySelector(`.ellipsis-${elementId}`);
+
+    setTimeout(() => {
+      trashCan.classList.add('hide');
+      ellipsisVertical.classList.remove('hide');
+    }, 1000);
+  }
+});
+
+// Event listener to remove Tasks
+
+list.addEventListener('click', (e) => {
+  // console.log(e.target);
+  UI.removeTask(e);
 });
 
 // Check if Webpack is currently on Development or Production mode.
