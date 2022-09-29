@@ -1,42 +1,62 @@
-import './components/todolist/style.scss';
-
-const tasks = [
-  {
-    description: 'Wash the dishes',
-    completed: true,
-    index: 0,
-  },
-  {
-    description: 'Complete todo list project',
-    completed: true,
-    index: 0,
-  },
-  {
-    description: 'Clean the house',
-    completed: true,
-    index: 0,
-  },
-];
-
-tasks.forEach((task, index) => {
-  task.index = index + 1;
-});
-
-const renderTasks = () => {
-  const list = document.querySelector('.list');
-  tasks.forEach((task) => {
-    list.innerHTML += `<div class="item">
-    <div class="item__container--checkbox-text">
-    <input type="checkbox">
-    <span>${task.description}</span>
-    </div>
-    <a class="remove" id="${task.index}"><i class="fa-solid fa-ellipsis-vertical"></i></a>
-  </div>`;
-  });
-};
+import './components/addremove/style.scss';
+import UI from './components/addremove/AddRemoveClass.js';
 
 // Event Listener to render tasks when window loads.
-window.addEventListener('DOMContentLoaded', renderTasks);
+window.addEventListener('DOMContentLoaded', UI.renderTasks);
+
+// Event Listeners
+
+// Event listener to add a Task
+const inputText = document.querySelector('.input-text');
+inputText.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    UI.addTask();
+    UI.renderTasks();
+  }
+});
+
+// Event listener to edit tasks
+const list = document.querySelector('.list');
+list.addEventListener('keypress', (e) => {
+  if (e.target.classList.contains('editor') && e.key === 'Enter') {
+    e.preventDefault();
+    UI.editTask(e);
+  }
+});
+
+// Event listener to show Trashcan
+
+list.addEventListener('focusin', (e) => {
+  if (e.target.classList.contains('editor')) {
+    const elementId = e.target.id;
+    const trashCan = document.querySelector(`.trash-${elementId}`);
+    const ellipsisVertical = document.querySelector(`.ellipsis-${elementId}`);
+    trashCan.classList.remove('hide');
+    ellipsisVertical.classList.add('hide');
+  }
+});
+
+// Event Listener to show Ellipsis
+
+list.addEventListener('focusout', (e) => {
+  if (e.target.classList.contains('editor')) {
+    UI.editTask(e);
+    const elementId = e.target.id;
+    const trashCan = document.querySelector(`.trash-${elementId}`);
+    const ellipsisVertical = document.querySelector(`.ellipsis-${elementId}`);
+
+    setTimeout(() => {
+      trashCan.classList.add('hide');
+      ellipsisVertical.classList.remove('hide');
+    }, 1000);
+  }
+});
+
+// Event listener to remove Tasks
+
+list.addEventListener('click', (e) => {
+  UI.removeTask(e);
+});
 
 // Check if Webpack is currently on Development or Production mode.
 if (process.env.NODE_ENV === 'production') {
