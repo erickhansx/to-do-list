@@ -1,5 +1,8 @@
 import './components/addremove/style.scss';
 import UI from './components/addremove/AddRemoveClass.js';
+import Checkbox from './components/checkbox/CheckboxClass.js';
+
+const reloadWindow = document.querySelector('.fa-arrows-rotate');
 
 // Event Listener to render tasks when window loads.
 window.addEventListener('DOMContentLoaded', UI.renderTasks);
@@ -56,6 +59,13 @@ list.addEventListener('focusout', (e) => {
 
 list.addEventListener('click', (e) => {
   UI.removeTask(e);
+});
+
+Checkbox.getCheckedBoxes();
+
+// Event listener for Reload Icon
+reloadWindow.addEventListener('click', () => {
+  window.location.reload();
 });
 
 // Check if Webpack is currently on Development or Production mode.
