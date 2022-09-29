@@ -11,7 +11,6 @@ export default class UI {
       let index = tasks.length;
       const task = new Task(inputTextValue, completed, index);
       tasks.push(task);
-      console.log(tasks);
       localStorage.setItem('tasks', JSON.stringify(tasks));
       document.querySelector('.input-text').value = '';
     } else {
@@ -21,7 +20,6 @@ export default class UI {
       let index = 0;
       const task = new Task(inputTextValue, completed, index);
       tasks.push(task);
-      console.log(tasks);
       localStorage.setItem('tasks', JSON.stringify(tasks));
       document.querySelector('.input-text').value = '';
     }
@@ -33,14 +31,20 @@ export default class UI {
       console.log(elementId);
       e.target.parentElement.parentElement.remove();
       let tasks = JSON.parse(localStorage.getItem('tasks'));
-      console.log(tasks);
       let newTasks = tasks.filter((task) => {
         return task.index != e.target.id;
       });
       tasks = newTasks;
+      console.log(tasks);
+      tasks.forEach((task, index) => {
+        task.index = index;
+      });
       localStorage.setItem('tasks', JSON.stringify(tasks));
+      this.renderTasks();
     }
   }
+
+  static clearAllCompleted() {}
 
   static editTask(e) {
     let elementId = e.target.id;

@@ -10,7 +10,6 @@ window.addEventListener('DOMContentLoaded', UI.renderTasks);
 let inputText = document.querySelector('.input-text');
 inputText.addEventListener('keydown', (e) => {
   if (e.key == 'Enter') {
-    console.log(document.querySelector('.input-text').value);
     UI.addTask();
     UI.renderTasks();
   }
@@ -40,8 +39,8 @@ list.addEventListener('focusin', (e) => {
 //Event Listener to show Ellipsis
 
 list.addEventListener('focusout', (e) => {
-  UI.editTask(e);
   if (e.target.classList.contains('editor')) {
+    UI.editTask(e);
     let elementId = e.target.id;
     let trashCan = document.querySelector(`.trash-${elementId}`);
     let ellipsisVertical = document.querySelector(`.ellipsis-${elementId}`);
