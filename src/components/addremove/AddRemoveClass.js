@@ -3,7 +3,6 @@ import Task from '../task/TasksClass.js';
 let tasks = [];
 export default class UI {
   static addTask() {
-    // let inputText = document.querySelector('.input-text');
     if (localStorage.getItem('tasks') !== null) {
       tasks = JSON.parse(localStorage.getItem('tasks'));
       const inputTextValue = document.querySelector('.input-text').value;
@@ -35,17 +34,16 @@ export default class UI {
         task.index = index;
       });
       localStorage.setItem('tasks', JSON.stringify(tasks));
+      UI.renderTasks();
     }
-  }
-
-  static clearAllCompleted() {
-    // const checked = document.querySelectorAll('.checkbox');
   }
 
   static editTask(e) {
     const elementId = e.target.id;
     const tasks = JSON.parse(localStorage.getItem('tasks'));
-    tasks[elementId].description = e.target.innerText;
+    if (e.target.innerText) {
+      tasks[elementId].description = e.target.innerText;
+    }
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }
 
@@ -57,7 +55,7 @@ export default class UI {
       tasks.forEach((task) => {
         list.innerHTML += `<div class="item">
     <div class="item__container--checkbox-text">
-    <input class="checkbox" type="checkbox">
+    <input class="checkbox" id="${task.index}" type="checkbox">
     <span id="${task.index}" class="editor" contentEditable="true">${task.description}</span>
     </div>
     <a id="${task.index}"><i class="hide remove trash-${task.index} fa-solid fa-trash-can" id="${task.index}"></i><i class="ellipsis-${task.index} fa-solid fa-ellipsis-vertical"></i></a>
