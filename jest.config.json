@@ -1,0 +1,6 @@
+{
+  "bail": 1,
+  "verbose": true,
+  "resetMocks": false,
+  "setupFiles": ["jest-localstorage-mock"]
+}
