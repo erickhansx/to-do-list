@@ -74,3 +74,10 @@ describe('Editing task description', () => {
     expect(tasksArray[0].completed).toBe(true);
   });
 });
+
+describe('Editing task description', () => {
+  test('testing clear all functionality', () => {
+    clearAll.click();
+    expect(tasksArray).toHaveLength(3);
+  });
+});
