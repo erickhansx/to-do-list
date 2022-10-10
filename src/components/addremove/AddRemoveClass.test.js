@@ -39,3 +39,18 @@ describe('addTask ', () => {
     expect(storage).toHaveLength(2);
   });
 });
+
+describe('remove tasks', () => {
+  test('should remove task from list', () => {
+    const taskId0 = document.querySelector('.anchor');
+    removeTaskMock(taskId0, tasksArr[0]);
+    expect(tasksArr).toHaveLength(1);
+  });
+
+  test('remove tasks from LocalStorage', () => {
+    storeAdd(task1);
+    const taskId0 = document.querySelector('.anchor');
+    removeTaskMock(taskId0, tasksArr[0]);
+    expect(storeGet()).toHaveLength(1);
+  });
+});
