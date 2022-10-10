@@ -61,3 +61,23 @@ const clearAll = document.getElementById('clear-all');
 clearAll.addEventListener('click', () => {
   tasksArray = clearComplete();
 });
+
+// tests
+describe('Editing task description', () => {
+  test('editing object from local storage', () => {
+    editFunction('what', tasksArray[0]);
+    expect(tasksArray[0].description).toBe('what');
+  });
+
+  test('Editing items completed status', () => {
+    checkBox.click();
+    expect(tasksArray[0].completed).toBe(true);
+  });
+});
+
+describe('Editing task description', () => {
+  test('testing clear all functionality', () => {
+    clearAll.click();
+    expect(tasksArray).toHaveLength(3);
+  });
+});
