@@ -29,8 +29,7 @@ const editFunction = (h3, task) => {
   localStorage.setItem('tasks', JSON.stringify(tasksArray));
 };
 
-document.body.innerHTML =
-  '<div id="list"><div class="line"><input type="checkbox" class="check"><h3>hello</h3><span class="options"><i class="fa-solid fa-ellipsis-vertical"></i></span><span class="delete"><i class="fa-solid fa-trash-can"></i></span></div><div class="line"><input class="check" type="checkbox"><h3>david</h3><span class="options"><i class="fa-solid fa-ellipsis-vertical"></i></span><span class="delete"><i class="fa-solid fa-trash-can"></i></span></div></div><div id="clear-all">clear all</div>';
+document.body.innerHTML = '<div id="list"><div class="line"><input type="checkbox" class="check"><h3>hello</h3><span class="options"><i class="fa-solid fa-ellipsis-vertical"></i></span><span class="delete"><i class="fa-solid fa-trash-can"></i></span></div><div class="line"><input class="check" type="checkbox"><h3>david</h3><span class="options"><i class="fa-solid fa-ellipsis-vertical"></i></span><span class="delete"><i class="fa-solid fa-trash-can"></i></span></div></div><div id="clear-all">clear all</div>';
 
 const checkBox = document.querySelector('.check');
 
