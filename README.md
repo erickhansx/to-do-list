@@ -32,6 +32,12 @@
 - Twitter: [@TheErickHans](https://twitter.com/TheErickHans)
 - LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
 
+👤 **Ezema Anthony Sunday**
+
+- GitHub: [@sonyco-4u](https://github.com/sonyco-4u)
+- Twitter: [@EZEMASUN](https://twitter.com/EZEMASUN)
+- LinkedIn: [ezema-anthony-sunday](https://www.linkedin.com/in/ezema-anthony-sunday-9180a3157)
+
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
